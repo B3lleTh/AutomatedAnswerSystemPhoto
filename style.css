@@ -1,0 +1,1009 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+:root {
+    --panel: #18181b;
+    --surface: #27272a;
+    --border: #3f3f46;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --accent: #d4af37;
+    --accent-dim: rgba(212, 175, 55, 0.15);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Instrument Sans', sans-serif;
+    background: #09090b;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    font-size: 13px
+}
+
+/* Removido el ruido granulado de fondo tipo app IA, ahora es un lienzo sólido corporativo */
+.shell {
+    position: relative;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    min-height: 100vh
+}
+
+/* ══ PANEL LATERAL ADMINISTRATIVO ══ */
+.panel {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.panel::-webkit-scrollbar {
+    width: 4px
+}
+
+.panel::-webkit-scrollbar-thumb {
+    background: var(--surface);
+    border-radius: 4px
+}
+
+.p-top {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.p-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: #e4e4e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #18181b;
+}
+
+.p-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.p-title small {
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px
+}
+
+.p-body {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1
+}
+
+.sec {
+    background: #202023;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border)
+}
+
+.sec-hd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+}
+
+.sec-hd:hover {
+    background: rgba(255, 255, 255, 0.02)
+}
+
+.sec-hd-l {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.sec-icon {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.sec-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text)
+}
+
+.sec-chevron {
+    font-size: 9px;
+    color: var(--muted);
+}
+
+.sec.open .sec-chevron {
+    transform: rotate(180deg)
+}
+
+.sec-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    background: #1c1c1f;
+}
+
+.sec-body.hidden {
+    display: none
+}
+
+.f {
+    display: flex;
+    flex-direction: column;
+    gap: 4px
+}
+
+.f label {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* ══ SELECCIÓN DE MÓDULO LIQUID (TRADICIONAL) ══ */
+.liquid-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #18181b;
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.liq-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 4px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+
+.liq-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.liq-btn.active {
+    background: var(--surface);
+    color: #fff;
+    border: 1px solid var(--border);
+}
+
+input[type=text],
+input[type=date],
+textarea,
+select {
+    width: 100%;
+    background: #141416;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    padding: 8px 10px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #71717a;
+    background: #18181b;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 65px;
+    line-height: 1.5
+}
+
+select option {
+    background: #18181b
+}
+
+.trow {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.trow label {
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer
+}
+
+.tog {
+    width: 28px;
+    height: 16px;
+    border-radius: 99px;
+    background: #3f3f46;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background .2s;
+}
+
+.tog::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform .2s;
+}
+
+.tog.on {
+    background: #22c55e;
+}
+
+.tog.on::after {
+    transform: translateX(12px);
+}
+
+.soc-row {
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    gap: 8px;
+    align-items: center
+}
+
+.soc-ic {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    background: #141416;
+    border: 1px solid var(--border);
+    padding: 4px 2px;
+    border-radius: 4px;
+    text-align: center
+}
+
+.themes {
+    display: flex;
+    gap: 6px
+}
+
+.th {
+    flex: 1;
+    height: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: transform .1s, border-color .1s;
+}
+
+.th.on,
+.th:hover {
+    border-color: #fff;
+    transform: translateY(-2px)
+}
+
+.th span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.p-actions {
+    padding: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0
+}
+
+.btn-exp {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #f4f4f5;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #18181b;
+    transition: background .15s;
+}
+
+.btn-exp:hover {
+    background: #e4e4e7;
+}
+
+.btn-exp.busy {
+    opacity: .6;
+    pointer-events: none
+}
+
+.btn-rst {
+    padding: 10px;
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    transition: color .15s, border-color .15s;
+}
+
+.btn-rst:hover {
+    border-color: #52525b;
+    color: var(--text)
+}
+
+/* ══ ESPACIO DE TRABAJO (PREVIEW) ══ */
+.stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
+    background: #141416;
+}
+
+.stage-lbl {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+/* ══ DOCUMENTO TERMINADO (IMPRESIÓN) ══ */
+#carta {
+    width: 580px;
+    position: relative;
+    border-radius: 1px;
+    overflow: hidden;
+    font-family: 'Instrument Sans', sans-serif;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.c-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0
+}
+
+.c-edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    z-index: 3
+}
+
+.c-in {
+    position: relative;
+    z-index: 2;
+    padding: 60px 60px 50px
+}
+
+/* Módulo de Fidelidad Corporativo */
+.c-fidelity {
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.c-fid-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.c-fid-code {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.c-fid-stamps {
+    display: flex;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.c-fid-stamp-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+/* 🎨 PALETAS DE ACABADOS (PAPELES REALES) */
+
+/* 1. Algodón Natural (Ivory) */
+#carta[data-t="ivory"] {
+    background: #fdfbf7
+}
+
+#carta[data-t="ivory"] .c-edge {
+    background: #d4af37
+}
+
+#carta[data-t="ivory"] .v-brand,
+#carta[data-t="ivory"] .v-name,
+#carta[data-t="ivory"] .v-sign {
+    color: #1c1917
+}
+
+#carta[data-t="ivory"] .v-pre {
+    color: #78716c
+}
+
+#carta[data-t="ivory"] .v-body {
+    color: #44403c
+}
+
+#carta[data-t="ivory"] .v-note {
+    color: #44403c;
+    background: #f5f2eb;
+    border-left: 2px solid #d4af37
+}
+
+#carta[data-t="ivory"] .v-rule {
+    background: #e7e2d6
+}
+
+#carta[data-t="ivory"] .v-tag {
+    color: #78716c
+}
+
+#carta[data-t="ivory"] .v-signsub {
+    color: #a8a29e
+}
+
+#carta[data-t="ivory"] .v-social {
+    color: #57534e;
+    border-color: #e7e2d6
+}
+
+#carta[data-t="ivory"] .v-foot {
+    border-color: #e7e2d6
+}
+
+#carta[data-t="ivory"] .v-datelbl {
+    color: #a8a29e
+}
+
+#carta[data-t="ivory"] .v-dateval {
+    color: #44403c
+}
+
+#carta[data-t="ivory"] .c-fidelity {
+    border-color: #d4af37;
+    background: #faf8f2;
+    color: #44403c;
+}
+
+#carta[data-t="ivory"] .c-fid-code {
+    color: #1c1917;
+}
+
+#carta[data-t="ivory"] .c-fid-stamp-circle {
+    border-color: #a8a29e;
+    color: transparent;
+}
+
+#carta[data-t="ivory"] .c-fid-stamp-circle.filled {
+    border-style: solid;
+    border-color: #d4af37;
+    background: #d4af37;
+    color: #fff;
+}
+
+/* 2. Carbón Premium (Obsidian) */
+#carta[data-t="obsidian"] {
+    background: #1c1917
+}
+
+#carta[data-t="obsidian"] .c-edge {
+    background: #d4af37
+}
+
+#carta[data-t="obsidian"] .v-brand,
+#carta[data-t="obsidian"] .v-name,
+#carta[data-t="obsidian"] .v-sign {
+    color: #f5f5f4
+}
+
+#carta[data-t="obsidian"] .v-pre {
+    color: #a8a29e
+}
+
+#carta[data-t="obsidian"] .v-body {
+    color: #d6d3d1
+}
+
+#carta[data-t="obsidian"] .v-note {
+    color: #e7e2d6;
+    background: #262220;
+    border-left: 2px solid #d4af37
+}
+
+#carta[data-t="obsidian"] .v-rule {
+    background: #262220
+}
+
+#carta[data-t="obsidian"] .v-tag {
+    color: #a8a29e
+}
+
+#carta[data-t="obsidian"] .v-signsub {
+    color: #78716c
+}
+
+#carta[data-t="obsidian"] .v-social {
+    color: #d6d3d1;
+    border-color: #262220
+}
+
+#carta[data-t="obsidian"] .v-foot {
+    border-color: #262220
+}
+
+#carta[data-t="obsidian"] .v-datelbl {
+    color: #78716c
+}
+
+#carta[data-t="obsidian"] .v-dateval {
+    color: #d6d3d1
+}
+
+#carta[data-t="obsidian"] .c-fidelity {
+    border-color: #44403c;
+    background: #262220;
+    color: #d6d3d1;
+}
+
+#carta[data-t="obsidian"] .c-fid-code {
+    color: #d4af37;
+}
+
+#carta[data-t="obsidian"] .c-fid-stamp-circle {
+    border-color: #78716c;
+    color: transparent;
+}
+
+#carta[data-t="obsidian"] .c-fid-stamp-circle.filled {
+    border-style: solid;
+    border-color: #d4af37;
+    background: #d4af37;
+    color: #1c1917;
+}
+
+/* 3. Azul Marino (Indigo) */
+#carta[data-t="indigo"] {
+    background: #0f172a
+}
+
+#carta[data-t="indigo"] .c-edge {
+    background: #94a3b8
+}
+
+#carta[data-t="indigo"] .v-brand,
+#carta[data-t="indigo"] .v-name,
+#carta[data-t="indigo"] .v-sign {
+    color: #f8fafc
+}
+
+#carta[data-t="indigo"] .v-pre {
+    color: #94a3b8
+}
+
+#carta[data-t="indigo"] .v-body {
+    color: #cbd5e1
+}
+
+#carta[data-t="indigo"] .v-note {
+    color: #cbd5e1;
+    background: #1e293b;
+    border-left: 2px solid #94a3b8
+}
+
+#carta[data-t="indigo"] .v-rule {
+    background: #1e293b
+}
+
+#carta[data-t="indigo"] .v-tag {
+    color: #94a3b8
+}
+
+#carta[data-t="indigo"] .v-signsub {
+    color: #64748b
+}
+
+#carta[data-t="indigo"] .v-social {
+    color: #cbd5e1;
+    border-color: #1e293b
+}
+
+#carta[data-t="indigo"] .v-foot {
+    border-color: #1e293b
+}
+
+#carta[data-t="indigo"] .v-datelbl {
+    color: #64748b
+}
+
+#carta[data-t="indigo"] .v-dateval {
+    color: #cbd5e1
+}
+
+#carta[data-t="indigo"] .c-fidelity {
+    border-color: #334155;
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+#carta[data-t="indigo"] .c-fid-code {
+    color: #f8fafc;
+}
+
+#carta[data-t="indigo"] .c-fid-stamp-circle {
+    border-color: #475569;
+    color: transparent;
+}
+
+#carta[data-t="indigo"] .c-fid-stamp-circle.filled {
+    border-style: solid;
+    border-color: #94a3b8;
+    background: #94a3b8;
+    color: #0f172a;
+}
+
+/* 4. Bosque Profundo (Emerald) */
+#carta[data-t="emerald"] {
+    background: #064e3b
+}
+
+#carta[data-t="emerald"] .c-edge {
+    background: #a7f3d0
+}
+
+#carta[data-t="emerald"] .v-brand,
+#carta[data-t="emerald"] .v-name,
+#carta[data-t="emerald"] .v-sign {
+    color: #ecfdf5
+}
+
+#carta[data-t="emerald"] .v-pre {
+    color: #a7f3d0
+}
+
+#carta[data-t="emerald"] .v-body {
+    color: #d1fae5
+}
+
+#carta[data-t="emerald"] .v-note {
+    color: #d1fae5;
+    background: #065f46;
+    border-left: 2px solid #a7f3d0
+}
+
+#carta[data-t="emerald"] .v-rule {
+    background: #065f46
+}
+
+#carta[data-t="emerald"] .v-tag {
+    color: #a7f3d0
+}
+
+#carta[data-t="emerald"] .v-signsub {
+    color: #047857
+}
+
+#carta[data-t="emerald"] .v-social {
+    color: #d1fae5;
+    border-color: #065f46
+}
+
+#carta[data-t="emerald"] .v-foot {
+    border-color: #065f46
+}
+
+#carta[data-t="emerald"] .v-datelbl {
+    color: #047857
+}
+
+#carta[data-t="emerald"] .v-dateval {
+    color: #d1fae5
+}
+
+#carta[data-t="emerald"] .c-fidelity {
+    border-color: #065f46;
+    background: #065f46;
+    color: #d1fae5;
+}
+
+#carta[data-t="emerald"] .c-fid-code {
+    color: #a7f3d0;
+}
+
+#carta[data-t="emerald"] .c-fid-stamp-circle {
+    border-color: #047857;
+    color: transparent;
+}
+
+#carta[data-t="emerald"] .c-fid-stamp-circle.filled {
+    border-style: solid;
+    border-color: #a7f3d0;
+    background: #a7f3d0;
+    color: #064e3b;
+}
+
+/* 5. Vino Tinto / Burdeos (Crimson) */
+#carta[data-t="crimson"] {
+    background: #450a0a
+}
+
+#carta[data-t="crimson"] .c-edge {
+    background: #fca5a5
+}
+
+#carta[data-t="crimson"] .v-brand,
+#carta[data-t="crimson"] .v-name,
+#carta[data-t="crimson"] .v-sign {
+    color: #fef2f2
+}
+
+#carta[data-t="crimson"] .v-pre {
+    color: #fca5a5
+}
+
+#carta[data-t="crimson"] .v-body {
+    color: #fee2e2
+}
+
+#carta[data-t="crimson"] .v-note {
+    color: #fee2e2;
+    background: #7f1d1d;
+    border-left: 2px solid #fca5a5
+}
+
+#carta[data-t="crimson"] .v-rule {
+    background: #7f1d1d
+}
+
+#carta[data-t="crimson"] .v-tag {
+    color: #fca5a5
+}
+
+#carta[data-t="crimson"] .v-signsub {
+    color: #b91c1c
+}
+
+#carta[data-t="crimson"] .v-social {
+    color: #fee2e2;
+    border-color: #7f1d1d
+}
+
+#carta[data-t="crimson"] .v-foot {
+    border-color: #7f1d1d
+}
+
+#carta[data-t="crimson"] .v-datelbl {
+    color: #b91c1c
+}
+
+#carta[data-t="crimson"] .v-dateval {
+    color: #fee2e2
+}
+
+#carta[data-t="crimson"] .c-fidelity {
+    border-color: #7f1d1d;
+    background: #7f1d1d;
+    color: #fee2e2;
+}
+
+#carta[data-t="crimson"] .c-fid-code {
+    color: #fca5a5;
+}
+
+#carta[data-t="crimson"] .c-fid-stamp-circle {
+    border-color: #b91c1c;
+    color: transparent;
+}
+
+#carta[data-t="crimson"] .c-fid-stamp-circle.filled {
+    border-style: solid;
+    border-color: #fca5a5;
+    background: #fca5a5;
+    color: #450a0a;
+}
+
+/* Componentes Base Internos del Documento */
+.c-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 35px
+}
+
+.c-brand {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1
+}
+
+.c-datelbl {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 2px
+}
+
+.c-dateval {
+    font-size: 12px
+}
+
+.c-rule {
+    height: 1px;
+    margin-bottom: 35px
+}
+
+.c-pre {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 8px
+}
+
+.c-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    line-height: .9;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 28px
+}
+
+.c-name em {
+    font-style: italic;
+}
+
+.c-body {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 24px
+}
+
+.c-note {
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 1.6;
+    font-style: italic;
+    display: none
+}
+
+.c-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px
+}
+
+.c-soc-pill {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid
+}
+
+.c-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 20px;
+    border-top-width: 1px;
+    border-top-style: solid
+}
+
+.c-tagline {
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 240px;
+    opacity: 0.8;
+}
+
+.c-sign {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.c-signsub {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.6;
+}
+
+@media(max-width:840px) {
+    .shell {
+        grid-template-columns: 1fr
+    }
+
+    #carta {
+        width: 100%;
+        max-width: 540px
+    }
+
+    .stage {
+        padding: 24px 12px
+    }
+
+    .panel {
+        max-height: none
+    }
+}
